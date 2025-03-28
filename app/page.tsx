@@ -15,7 +15,7 @@ export default function Home() {
         />
       </div>
       {/* Glassmorphic overlay */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-10"/>
+      <div className="absolute inset-0 bg-white/50 backdrop-blur-sm z-10"/>
       <Hero />
     </main>
   );
