@@ -54,7 +54,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-black/50 text-white py-16 px-4">
+    <footer className="relative bg-black/80 text-white py-16 px-4">
       <motion.div 
         className="container mx-auto grid md:grid-cols-4 gap-8"
         initial={{ opacity: 0, y: 50 }}
