@@ -19,7 +19,7 @@ interface MusicPlayerProps {
   musicList: Song[];
 }
 
-export function MusicPlayer({ musicList }: MusicPlayerProps) {
+export function MusicPlayer() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
