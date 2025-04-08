@@ -1,9 +1,9 @@
+import Hero from "@/components/hero";
 import Image from "next/image";
-import Hero from "@/components/hero"
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black relative overflow-hidden">
+    <main className="min-h-screen bg-black/40 relative overflow-hidden">
       <div className="absolute z-0 inset-0">
         <Image
           src="/microphone.jpeg"
@@ -15,7 +15,7 @@ export default function Home() {
         />
       </div>
       {/* Glassmorphic overlay */}
-      <div className="absolute inset-0 bg-white/20 z-10"/>
+      <div className="absolute inset-0 bg-white/20 z-10" />
       <Hero />
     </main>
   );

@@ -1,50 +1,43 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { 
-  Music, 
-  Instagram, 
-  Twitter, 
-  Facebook, 
-  Twitch, 
-  Youtube 
-} from 'lucide-react';
+import { motion } from "framer-motion";
+import { Facebook, Instagram, Music, Twitch, Twitter, Youtube } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
   const socialLinks = [
-    { 
-      icon: Instagram, 
-      href: "https://instagram.com/sonicwave", 
-      color: "text-pink-500 hover:text-pink-400" 
+    {
+      icon: Instagram,
+      href: "https://instagram.com/sonicwave",
+      color: "text-pink-500 hover:text-pink-400",
     },
-    { 
-      icon: Twitter, 
-      href: "https://twitter.com/sonicwave", 
-      color: "text-blue-400 hover:text-blue-300" 
+    {
+      icon: Twitter,
+      href: "https://twitter.com/sonicwave",
+      color: "text-blue-400 hover:text-blue-300",
     },
-    { 
-      icon: Facebook, 
-      href: "https://facebook.com/sonicwave", 
-      color: "text-blue-600 hover:text-blue-500" 
+    {
+      icon: Facebook,
+      href: "https://facebook.com/sonicwave",
+      color: "text-blue-600 hover:text-blue-500",
     },
-    { 
-      icon: Twitch, 
-      href: "https://twitch.tv/sonicwave", 
-      color: "text-purple-500 hover:text-purple-400" 
+    {
+      icon: Twitch,
+      href: "https://twitch.tv/sonicwave",
+      color: "text-purple-500 hover:text-purple-400",
     },
-    { 
-      icon: Youtube, 
-      href: "https://youtube.com/sonicwave", 
-      color: "text-red-500 hover:text-red-400" 
-    }
+    {
+      icon: Youtube,
+      href: "https://youtube.com/sonicwave",
+      color: "text-red-500 hover:text-red-400",
+    },
   ];
 
   const quickLinks = [
     { name: "Home", href: "/home" },
     { name: "Music", href: "/music" },
     { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" }
+    { name: "Contact", href: "/contact" },
   ];
 
   const musicPlatforms = [
@@ -55,7 +48,7 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-black/80 text-white py-16 px-4">
-      <motion.div 
+      <motion.div
         className="container mx-auto grid md:grid-cols-4 gap-8"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -71,7 +64,7 @@ export default function Footer() {
           <p className="text-white/70 mb-4">
             Electronic music producer crafting sonic journeys that transcend boundaries.
           </p>
-          
+
           {/* Social Links */}
           <div className="flex space-x-4">
             {socialLinks.map((social) => (
@@ -96,10 +89,7 @@ export default function Footer() {
           <ul className="space-y-2">
             {quickLinks.map((link) => (
               <li key={link.name}>
-                <Link 
-                  href={link.href} 
-                  className="text-white/70 hover:text-white transition-colors"
-                >
+                <Link href={link.href} className="text-white/70 hover:text-white transition-colors">
                   {link.name}
                 </Link>
               </li>
@@ -113,11 +103,7 @@ export default function Footer() {
           <ul className="space-y-2">
             {musicPlatforms.map((platform) => (
               <li key={platform.name}>
-                <Link 
-                  href={platform.href} 
-                  target="_blank"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
+                <Link href={platform.href} target="_blank" className="text-white/70 hover:text-white transition-colors">
                   {platform.name}
                 </Link>
               </li>
@@ -127,7 +113,7 @@ export default function Footer() {
       </motion.div>
 
       {/* Copyright */}
-      <motion.div 
+      <motion.div
         className="text-center text-white/50 mt-8 pt-4 border-t border-white/20"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
