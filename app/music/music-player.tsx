@@ -1,107 +1,107 @@
-"use client";
+"use client"
 
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
-import { Music, Pause, Play, Repeat, Shuffle, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react"
+import Image from "next/image"
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Repeat, Shuffle, Music } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Slider } from "@/components/ui/slider"
 
 interface Song {
-  id: string;
-  title: string;
-  artist: string;
-  cover: string;
-  file: string;
-  duration: number;
+  id: string
+  title: string
+  artist: string
+  cover: string
+  file: string
+  duration: number
 }
 
 interface MusicPlayerProps {
-  musicList: Song[];
+  musicList: Song[]
 }
 
-export function MusicPlayer() {
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [volume, setVolume] = useState(80);
-  const [isMuted, setIsMuted] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+export function MusicPlayer({ musicList }: MusicPlayerProps) {
+  const [currentSongIndex, setCurrentSongIndex] = useState(0)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [volume, setVolume] = useState(80)
+  const [isMuted, setIsMuted] = useState(false)
+  const [duration, setDuration] = useState(0)
+  const [currentTime, setCurrentTime] = useState(0)
 
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const currentSong = musicList[currentSongIndex];
+  const audioRef = useRef<HTMLAudioElement>(null)
+  const currentSong = musicList[currentSongIndex]
 
   useEffect(() => {
     if (audioRef.current) {
       if (isPlaying) {
         audioRef.current.play().catch((err) => {
-          console.error("Error playing audio:", err);
-          setIsPlaying(false);
-        });
+          console.error("Error playing audio:", err)
+          setIsPlaying(false)
+        })
       } else {
-        audioRef.current.pause();
+        audioRef.current.pause()
       }
     }
-  }, [isPlaying, currentSongIndex]);
+  }, [isPlaying, currentSongIndex])
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = volume / 100;
-      audioRef.current.muted = isMuted;
+      audioRef.current.volume = volume / 100
+      audioRef.current.muted = isMuted
     }
-  }, [volume, isMuted]);
+  }, [volume, isMuted])
 
   const handleTimeUpdate = () => {
     if (audioRef.current) {
-      const current = audioRef.current.currentTime;
-      const duration = audioRef.current.duration;
-      setCurrentTime(current);
-      setDuration(duration);
-      setProgress((current / duration) * 100);
+      const current = audioRef.current.currentTime
+      const duration = audioRef.current.duration
+      setCurrentTime(current)
+      setDuration(duration)
+      setProgress((current / duration) * 100)
     }
-  };
+  }
 
   const handleProgressChange = (value: number[]) => {
     if (audioRef.current) {
-      const newTime = (value[0] / 100) * audioRef.current.duration;
-      audioRef.current.currentTime = newTime;
-      setProgress(value[0]);
+      const newTime = (value[0] / 100) * audioRef.current.duration
+      audioRef.current.currentTime = newTime
+      setProgress(value[0])
     }
-  };
+  }
 
   const handleVolumeChange = (value: number[]) => {
-    setVolume(value[0]);
+    setVolume(value[0])
     if (value[0] === 0) {
-      setIsMuted(true);
+      setIsMuted(true)
     } else if (isMuted) {
-      setIsMuted(false);
+      setIsMuted(false)
     }
-  };
+  }
 
   const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+    setIsPlaying(!isPlaying)
+  }
 
   const toggleMute = () => {
-    setIsMuted(!isMuted);
-  };
+    setIsMuted(!isMuted)
+  }
 
   const playPrevious = () => {
-    setCurrentSongIndex((prev) => (prev === 0 ? musicList.length - 1 : prev - 1));
-    setIsPlaying(true);
-  };
+    setCurrentSongIndex((prev) => (prev === 0 ? musicList.length - 1 : prev - 1))
+    setIsPlaying(true)
+  }
 
   const playNext = () => {
-    setCurrentSongIndex((prev) => (prev === musicList.length - 1 ? 0 : prev + 1));
-    setIsPlaying(true);
-  };
+    setCurrentSongIndex((prev) => (prev === musicList.length - 1 ? 0 : prev + 1))
+    setIsPlaying(true)
+  }
 
   const formatTime = (time: number) => {
-    if (Number.isNaN(time)) return "0:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-  };
+    if (isNaN(time)) return "0:00"
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`
+  }
 
   return (
     <div className="flex flex-col">
@@ -214,8 +214,8 @@ export function MusicPlayer() {
                 currentSongIndex === index ? "bg-purple-600/30 border border-purple-500/50" : "hover:bg-white/5"
               }`}
               onClick={() => {
-                setCurrentSongIndex(index);
-                setIsPlaying(true);
+                setCurrentSongIndex(index)
+                setIsPlaying(true)
               }}
             >
               <div className="relative w-12 h-12 rounded overflow-hidden flex-shrink-0">
@@ -256,5 +256,5 @@ export function MusicPlayer() {
         </div>
       </div>
     </div>
-  );
+  )
 }

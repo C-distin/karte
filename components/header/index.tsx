@@ -9,7 +9,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", icon: Home, href: "/home" },
+    { name: "Home", icon: Home, href: "/" },
     { name: "Music", icon: Music, href: "/music" },
     { name: "About", icon: Info, href: "/about" },
     { name: "Contact", icon: Mail, href: "/contact" },
@@ -98,7 +98,7 @@ export function Header() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <Link href="/" className="flex items-center gap-2">
-              <Music className="w-8 h-8 text-blue-400" />
+              <Music className="w-8 h-8 text-[#ff930f]" />
               KARTE
             </Link>
           </motion.div>

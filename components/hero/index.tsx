@@ -91,7 +91,7 @@ export default function Hero() {
         <motion.div variants={itemVariants} className="mb-6">
           <motion.h1
             className="text-6xl md:text-8xl font-bold mb-4 
-            bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent"
+            bg-gradient-to-r from-[#ff930f] to-[#fff95b] bg-clip-text text-transparent"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100 }}
@@ -110,8 +110,8 @@ export default function Hero() {
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              className="flex items-center gap-2 bg-blue-600/50 
-            text-white px-6 py-3 rounded-full hover:bg-blue-700/50 
+              className="flex items-center gap-2 bg-[#fff95b]/50 
+            text-white px-6 py-3 rounded-full hover:bg-[#ff930f]/50 
             transition-all shadow-lg"
             >
               <Play className="w-5 h-5 fill-white" />
