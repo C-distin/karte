@@ -4,12 +4,12 @@ import { Music2, Headphones, Upload, Share2 } from "lucide-react"
 
 export const metadata: Metadata = {
   title: "About Us | Music Dashboard",
-  description: "Learn more about our music platform and team",
+  description: "Learn more about Karte and his music journey.",
 }
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-[#ff930f] to-[#fff95b]">
+    <div className="min-h-screen bg-[#ff930f]">
       <main className="container mx-auto p-6 pt-24 md:pt-32">
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-8 animate-fade-in">About Karte</h1>
 
