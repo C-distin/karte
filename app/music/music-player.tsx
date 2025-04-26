@@ -124,8 +124,8 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 className="object-cover"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center bg-purple-800">
-                <Music className="w-16 h-16 text-white/70" />
+              <div className="w-full h-full flex items-center justify-center bg-[#8280ed]">
+                <Music className="w-16 h-16 text-gray-100" />
               </div>
             )}
           </div>
@@ -133,8 +133,8 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
 
         <div className="col-span-2 flex flex-col justify-between">
           <div className="text-center md:text-left">
-            <h2 className="text-2xl font-bold text-white mb-2 truncate">{currentSong.title}</h2>
-            <p className="text-lg text-purple-200 mb-6">{currentSong.artist}</p>
+            <h2 className="text-2xl font-bold text-gray-700 mb-2 truncate">{currentSong.title}</h2>
+            <p className="text-lg text-gray-500 mb-6">{currentSong.artist}</p>
           </div>
 
           <div className="space-y-6">
@@ -146,7 +146,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 onValueChange={handleProgressChange}
                 className="cursor-pointer"
               />
-              <div className="flex justify-between text-sm text-purple-200">
+              <div className="flex justify-between text-sm text-gray-500">
                 <span>{formatTime(currentTime)}</span>
                 <span>{formatTime(duration)}</span>
               </div>
@@ -157,12 +157,12 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => {}}
-                className="text-purple-200 hover:text-white hover:bg-white/10"
+                className="text-gray-500 hover:text-gray-700 hover:bg-gray-200"
               >
                 <Shuffle className="h-5 w-5" />
               </Button>
 
-              <Button variant="ghost" size="icon" onClick={playPrevious} className="text-white hover:bg-white/10">
+              <Button variant="ghost" size="icon" onClick={playPrevious} className="text-gray-700 hover:bg-gray-200">
                 <SkipBack className="h-6 w-6" />
               </Button>
 
@@ -170,12 +170,12 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 variant="default"
                 size="icon"
                 onClick={togglePlay}
-                className="bg-purple-600 hover:bg-purple-700 text-white rounded-full h-12 w-12"
+                className="bg-[#8280ed] hover:bg-[#6563cb] text-white rounded-full h-12 w-12"
               >
                 {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 ml-1" />}
               </Button>
 
-              <Button variant="ghost" size="icon" onClick={playNext} className="text-white hover:bg-white/10">
+              <Button variant="ghost" size="icon" onClick={playNext} className="text-gray-700 hover:bg-gray-200">
                 <SkipForward className="h-6 w-6" />
               </Button>
 
@@ -183,7 +183,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => {}}
-                className="text-purple-200 hover:text-white hover:bg-white/10"
+                className="text-gray-500 hover:text-gray-700 hover:bg-gray-200"
               >
                 <Repeat className="h-5 w-5" />
               </Button>
@@ -197,7 +197,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
           variant="ghost"
           size="icon"
           onClick={toggleMute}
-          className="text-purple-200 hover:text-white hover:bg-white/10"
+          className="text-gray-500 hover:text-gray-700 hover:bg-gray-200"
         >
           {isMuted || volume === 0 ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
         </Button>
@@ -205,13 +205,13 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
       </div>
 
       <div className="mt-12">
-        <h3 className="text-xl font-semibold text-white mb-4">Music Library</h3>
+        <h3 className="text-xl font-semibold text-gray-700 mb-4">Music Library</h3>
         <div className="space-y-2">
           {musicList.map((song, index) => (
             <div
               key={song.id}
               className={`flex items-center gap-4 p-3 rounded-lg transition-all cursor-pointer ${
-                currentSongIndex === index ? "bg-purple-600/30 border border-purple-500/50" : "hover:bg-white/5"
+                currentSongIndex === index ? "bg-[#8280ed]/20 border border-[#8280ed]/50" : "hover:bg-gray-200/50"
               }`}
               onClick={() => {
                 setCurrentSongIndex(index)
@@ -222,18 +222,18 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 {song.cover ? (
                   <Image src={song.cover || "/placeholder.svg"} alt={song.title} fill className="object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-purple-800">
-                    <Music className="w-6 h-6 text-white/70" />
+                  <div className="w-full h-full flex items-center justify-center bg-[#8280ed]">
+                    <Music className="w-6 h-6 text-gray-100" />
                   </div>
                 )}
               </div>
 
               <div className="flex-1 min-w-0">
-                <h4 className="font-medium text-white truncate">{song.title}</h4>
-                <p className="text-sm text-purple-200 truncate">{song.artist}</p>
+                <h4 className="font-medium text-gray-700 truncate">{song.title}</h4>
+                <p className="text-sm text-gray-500 truncate">{song.artist}</p>
               </div>
 
-              <div className="text-sm text-purple-200">{formatTime(song.duration)}</div>
+              <div className="text-sm text-gray-500">{formatTime(song.duration)}</div>
 
               {currentSongIndex === index && isPlaying && (
                 <div className="flex-shrink-0 w-4 flex items-center justify-center">
@@ -241,7 +241,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                     {[1, 2, 3].map((bar) => (
                       <span
                         key={bar}
-                        className="w-1 bg-purple-400 rounded-full animate-pulse"
+                        className="w-1 bg-[#8280ed] rounded-full animate-pulse"
                         style={{
                           height: `${8 + bar * 4}px`,
                           animationDelay: `${bar * 0.2}s`,
