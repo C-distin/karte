@@ -27,7 +27,7 @@ export default function AboutPage() {
             </div>
             <div className="flex justify-center">
               <div className="relative w-64 h-64 rounded-full overflow-hidden border-4 border-[#8280ed]/30 shadow-lg">
-                <Image src="/placeholder.svg?height=400&width=400" alt="Music App" fill className="object-cover" />
+                <Image src="https://images.pexels.com/photos/744318/pexels-photo-744318.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Music App" fill className="object-cover" />
               </div>
             </div>
           </section>
