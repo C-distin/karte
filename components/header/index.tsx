@@ -135,10 +135,16 @@ export function Header() {
                 >
                   <Link
                     href={item.href}
-                    className="text-white hover:text-blue-300 transition-colors relative 
-                    flex items-center gap-2 group"
+                    className={`hover:text-blue-300 transition-colors relative 
+                    flex items-center gap-2 group ${
+                      pathname === "/" ? "text-white" : "text-gray-400"
+                    }`} // Modified line
                   >
-                    <item.icon className="w-5 h-5 text-white/70 group-hover:text-blue-300 transition-colors" />
+                    <item.icon
+                      className={`w-5 h-5 transition-colors ${
+                        pathname === "/" ? "text-white/70" : "text-gray-400/70"
+                      } group-hover:text-blue-300`} // Modified line
+                    />
                     {item.name}
                     <span
                       className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 
