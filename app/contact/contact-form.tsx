@@ -66,16 +66,16 @@ export function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Name</FormLabel>
+                <FormLabel className="text-gray-700">Name</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     placeholder="Your name"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-purple-400"
+                    className="bg-gray-100 border-gray-300 text-gray-700 placeholder:text-gray-400 focus:border-[#8280ed]"
                     disabled={isSubmitting}
                   />
                 </FormControl>
-                <FormMessage className="text-red-300" />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -85,17 +85,17 @@ export function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-white">Email</FormLabel>
+                <FormLabel className="text-gray-700">Email</FormLabel>
                 <FormControl>
                   <Input
                     {...field}
                     type="email"
                     placeholder="your.email@example.com"
-                    className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-purple-400"
+                    className="bg-gray-100 border-gray-300 text-gray-700 placeholder:text-gray-400 focus:border-[#8280ed]"
                     disabled={isSubmitting}
                   />
                 </FormControl>
-                <FormMessage className="text-red-300" />
+                <FormMessage className="text-red-500" />
               </FormItem>
             )}
           />
@@ -106,16 +106,16 @@ export function ContactForm() {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white">Subject</FormLabel>
+              <FormLabel className="text-gray-700">Subject</FormLabel>
               <FormControl>
                 <Input
                   {...field}
                   placeholder="What's this about?"
-                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-purple-400"
+                  className="bg-gray-100 border-gray-300 text-gray-700 placeholder:text-gray-400 focus:border-[#8280ed]"
                   disabled={isSubmitting}
                 />
               </FormControl>
-              <FormMessage className="text-red-300" />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
@@ -125,16 +125,16 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-white">Message</FormLabel>
+              <FormLabel className="text-gray-700">Message</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
                   placeholder="Your message..."
-                  className="bg-white/10 border-white/20 text-white placeholder:text-white/50 focus:border-purple-400 min-h-[150px]"
+                  className="bg-gray-100 border-gray-300 text-gray-700 placeholder:text-gray-400 focus:border-[#8280ed] min-h-[150px]"
                   disabled={isSubmitting}
                 />
               </FormControl>
-              <FormMessage className="text-red-300" />
+              <FormMessage className="text-red-500" />
             </FormItem>
           )}
         />
@@ -142,7 +142,7 @@ export function ContactForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white transition-all"
+          className="w-full bg-[#8280ed] hover:bg-[#6563cb] text-white transition-all"
         >
           {isSubmitting ? (
             <>
