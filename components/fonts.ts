@@ -11,4 +11,5 @@ export const playwrite = Playwrite_DK_Loopet({
 
 export const lilita = Lilita_One({
   weight: "400",
+  subsets: ["latin"],
 })
