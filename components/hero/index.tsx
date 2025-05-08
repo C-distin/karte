@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Disc3, Headphones, MessageSquarePlus, Play } from "lucide-react";
+import { pacifico } from "@/components/fonts";
 import Link from "next/link";
 
 export default function Hero() {
@@ -89,8 +90,8 @@ export default function Hero() {
       >
         <motion.div variants={itemVariants} className="mb-6">
           <motion.h1
-            className="text-6xl md:text-8xl font-bold mb-4 
-            bg-gradient-to-r from-[#ff930f] to-[#fff95b] bg-clip-text text-transparent"
+            className={ `${pacifico.className} text-6xl md:text-8xl font-bold mb-4 
+            bg-gradient-to-r from-[#ff930f] to-[#fff95b] bg-clip-text text-transparent` }
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100 }}
