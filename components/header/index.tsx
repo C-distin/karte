@@ -3,12 +3,28 @@
 import { Home, Info, Mail, Menu, Music, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+
+  // Track scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrolled]);
 
   const navLinks = [
     { name: "Home", icon: Home, href: "/" },
@@ -74,6 +90,11 @@ export function Header() {
     },
   };
 
+  // Define text color based on scroll position
+  const textColor = scrolled ? "text-black" : "text-white";
+  const navTextColor = scrolled ? "text-gray-800" : "text-gray-400";
+  const navTextActiveColor = scrolled ? "text-black" : "text-white";
+
   return (
     <motion.header
       className="fixed w-full top-0 left-0 z-40"
@@ -85,8 +106,9 @@ export function Header() {
         <div className="relative flex justify-between items-center">
           {/* Glassmorphic Background */}
           <motion.div
-            //className="absolute inset-0 bg-white/10 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 -z-10"
-            className="absolute inset-0 -z-10"
+            className={`absolute inset-0 ${
+              scrolled ? "bg-white/90 backdrop-blur-xl shadow-md" : "bg-transparent"
+            } rounded-2xl transition-all duration-300 -z-10`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -94,7 +116,7 @@ export function Header() {
 
           {/* Logo */}
           <motion.div
-            className="text-white text-2xl font-bold z-50 relative flex items-center gap-2"
+            className={`${textColor} text-2xl font-bold z-50 relative flex items-center gap-2 transition-colors duration-300`}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: "spring", stiffness: 300 }}
@@ -108,7 +130,11 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:block z-50">
             <motion.ul
-              className="flex space-x-6 bg-white/15 backdrop-blur-lg rounded-full px-6 py-3 border border-white/10"
+              className={`flex space-x-6 ${
+                scrolled ? "bg-white/50" : "bg-white/15"
+              } backdrop-blur-lg rounded-full px-6 py-3 border ${
+                scrolled ? "border-gray-200" : "border-white/10"
+              } transition-all duration-300`}
               initial="hidden"
               animate="visible"
               variants={{
@@ -139,13 +165,13 @@ export function Header() {
                     href={item.href}
                     className={`hover:text-blue-300 transition-colors relative 
                     flex items-center gap-2 group ${
-                      pathname === "/" ? "text-white" : "text-gray-400"
-                    }`} // Modified line
+                      pathname === item.href ? navTextActiveColor : navTextColor
+                    }`}
                   >
                     <item.icon
                       className={`w-5 h-5 transition-colors ${
-                        pathname === "/" ? "text-white/70" : "text-gray-400/70"
-                      } group-hover:text-blue-300`} // Modified line
+                        pathname === item.href ? `${navTextActiveColor}/70` : `${navTextColor}/70`
+                      } group-hover:text-blue-300`}
                     />
                     {item.name}
                     <span
@@ -160,7 +186,7 @@ export function Header() {
 
           {/* Mobile Menu Toggle */}
           <motion.button
-            className="md:hidden text-white z-50 relative"
+            className={`md:hidden ${textColor} z-50 relative transition-colors duration-300`}
             onClick={toggleMenu}
             aria-label="Toggle mobile menu"
             whileTap={{ scale: 0.9 }}
