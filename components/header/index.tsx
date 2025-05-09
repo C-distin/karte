@@ -102,7 +102,7 @@ export function Header() {
       animate="visible"
       variants={headerVariants}
     >
-      <div className="container mx-auto px-4 md:px-8 py-4">
+      <div className="container mx-auto px-2 md:px-4 py-4">
         <div className="relative flex justify-between items-center">
           {/* Glassmorphic Background */}
           <motion.div
