@@ -18,11 +18,11 @@ export default function AboutPage() {
           <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="space-y-4">
               <h2 className={`${lilita.className} text-2xl font-bold text-black`}>Your Music, Your Way</h2>
-              <p className="text-black">
+              <p className="text-black text-justify">
                 Originally residing in Dallas,Tx Karté has compiled over 14 years of production and composition experience. In 2015 Karté moved to Austin,Tx to attend the "Recording Conservatory of Austin" an audio engineering school in which he graduated in 2018. After which he studied under Travis Kennedy a former engineer from the famed "Electric Lady Studios" in Greenwhich Village, New York City. Since, Karté has been perfecting his craft on the boards as well as the drum machine with his new found production team.
               </p>
               <Image src="https://images.pexels.com/photos/744318/pexels-photo-744318.jpeg" alt="Music App" className="object-cover" width={700} height={400} />
-              <p className="text-black">
+              <p className="text-black text-justify">
                 "Engineering is like a magic trick, when I first started I was guessing cards out of a deck…now I'm tryin to make the room disappear, theres levels to everything."
               </p>
             </div>
