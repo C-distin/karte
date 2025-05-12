@@ -26,6 +26,35 @@ export function Header() {
     };
   }, [scrolled]);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
+
+  // Close mobile menu when Escape key is pressed
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [isMenuOpen]);
+
+  // Prevent scrolling when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const navLinks = [
     { name: "Home", icon: Home, href: "/" },
     { name: "Music", icon: Music, href: "/music" },
@@ -37,63 +66,42 @@ export function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Define text color variables based on scroll state
+  const textColor = scrolled ? "text-gray-800" : "text-white";
+  const navTextColor = scrolled ? "text-gray-600" : "text-white";
+  const navTextActiveColor = scrolled ? "text-blue-600" : "text-blue-300";
+
+  // Animation variants
   const headerVariants = {
     hidden: { opacity: 0, y: -50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-      },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   const mobileMenuVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.9,
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
       transition: {
-        type: "tween",
         duration: 0.3,
-      },
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "tween",
-        duration: 0.3,
-        delayChildren: 0.2,
         staggerChildren: 0.1,
-      },
+        delayChildren: 0.2,
+      }
     },
   };
 
   const menuItemVariants = {
-    hidden: {
-      opacity: 0,
-      x: -20,
-      transition: {
-        type: "tween",
-      },
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 20,
-      },
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { type: "spring", stiffness: 300 }
     },
   };
-
-  // Define text color based on scroll position
-  const textColor = scrolled ? "text-black" : "text-white";
-  const navTextColor = scrolled ? "text-gray-800" : "text-gray-400";
-  const navTextActiveColor = scrolled ? "text-black" : "text-white";
 
   return (
     <motion.header
@@ -101,6 +109,7 @@ export function Header() {
       initial="hidden"
       animate="visible"
       variants={headerVariants}
+      role="banner"
     >
       <div className="container mx-auto px-2 md:px-4 py-4">
         <div className="relative flex justify-between items-center">
@@ -121,14 +130,14 @@ export function Header() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Link href="/" className="flex items-center gap-2">
-              <Music className="w-8 h-8 text-[#ff930f]" />
-              KARTE
+            <Link href="/" className="flex items-center gap-2" aria-label="KARTE - Home">
+              <Music className="w-8 h-8 text-[#ff930f]" aria-hidden="true" />
+              <span className="font-bold tracking-wider">KARTE</span>
             </Link>
           </motion.div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:block z-50">
+          <nav className="hidden md:block z-50" aria-label="Main Navigation">
             <motion.ul
               className={`flex space-x-6 ${
                 scrolled ? "bg-white/50" : "bg-white/15"
@@ -167,16 +176,19 @@ export function Header() {
                     flex items-center gap-2 group ${
                       pathname === item.href ? navTextActiveColor : navTextColor
                     }`}
+                    aria-current={pathname === item.href ? "page" : undefined}
                   >
                     <item.icon
                       className={`w-5 h-5 transition-colors ${
                         pathname === item.href ? `${navTextActiveColor}/70` : `${navTextColor}/70`
                       } group-hover:text-blue-300`}
+                      aria-hidden="true"
                     />
                     {item.name}
                     <span
-                      className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 
-                    transition-all group-hover:w-full"
+                      className={`absolute bottom-0 left-0 h-0.5 bg-blue-300 
+                      transition-all group-hover:w-full ${pathname === item.href ? 'w-full' : 'w-0'}`}
+                      aria-hidden="true"
                     />
                   </Link>
                 </motion.li>
@@ -186,9 +198,11 @@ export function Header() {
 
           {/* Mobile Menu Toggle */}
           <motion.button
-            className={`md:hidden ${textColor} z-50 relative transition-colors duration-300`}
+            className={`md:hidden ${textColor} z-50 relative transition-colors duration-300 p-2`}
             onClick={toggleMenu}
             aria-label="Toggle mobile menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
             whileTap={{ scale: 0.9 }}
           >
             <AnimatePresence mode="wait">
@@ -199,7 +213,7 @@ export function Header() {
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
                 >
-                  <X size={32} />
+                  <X size={32} aria-hidden="true" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -208,7 +222,7 @@ export function Header() {
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: -90, opacity: 0 }}
                 >
-                  <Menu size={32} />
+                  <Menu size={32} aria-hidden="true" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -223,6 +237,10 @@ export function Header() {
                 animate="visible"
                 exit="hidden"
                 variants={mobileMenuVariants}
+                id="mobile-menu"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Mobile Navigation"
               >
                 <motion.nav
                   className="flex flex-col items-center justify-center h-full space-y-8"
@@ -235,15 +253,17 @@ export function Header() {
                     <motion.div key={item.name} variants={menuItemVariants}>
                       <Link
                         href={item.href}
-                        className="text-3xl text-white hover:text-blue-300 transition-colors 
-                        relative group flex items-center gap-4"
+                        className={`text-3xl text-white hover:text-blue-300 transition-colors 
+                        relative group flex items-center gap-4 ${pathname === item.href ? 'font-medium' : ''}`}
                         onClick={toggleMenu}
+                        aria-current={pathname === item.href ? "page" : undefined}
                       >
-                        <item.icon className="w-8 h-8 text-white/70 group-hover:text-blue-300 transition-colors" />
+                        <item.icon className="w-8 h-8 text-white/70 group-hover:text-blue-300 transition-colors" aria-hidden="true" />
                         {item.name}
                         <span
-                          className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 
-                        transition-all group-hover:w-full"
+                          className={`absolute bottom-0 left-0 h-0.5 bg-blue-300 
+                          transition-all group-hover:w-full ${pathname === item.href ? 'w-full' : 'w-0'}`}
+                          aria-hidden="true"
                         />
                       </Link>
                     </motion.div>

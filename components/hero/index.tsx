@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Disc3, Headphones, MessageSquarePlus, Play } from "lucide-react";
-import { pacifico } from "@/components/fonts";
+import { unifraktur } from "@/components/fonts";
 import Link from "next/link";
 
 export default function Hero() {
@@ -53,7 +53,7 @@ export default function Hero() {
 
       {/* Animated Background Elements */}
       <motion.div
-        className="absolute top-1/4 left-0 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"
+        className="absolute top-1/4 left-0 w-72 h-72 bg-blue-600/30 rounded-full blur-3xl"
         initial={{ scale: 0, opacity: 0 }}
         animate={{
           scale: 1,
@@ -67,7 +67,7 @@ export default function Hero() {
         }}
       />
       <motion.div
-        className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
+        className="absolute bottom-1/4 right-0 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"
         initial={{ scale: 0, opacity: 0 }}
         animate={{
           scale: 1,
@@ -90,15 +90,15 @@ export default function Hero() {
       >
         <motion.div variants={itemVariants} className="mb-6">
           <motion.h1
-            className={ `${pacifico.className} text-6xl md:text-8xl font-bold mb-4 
-            bg-gradient-to-r from-[#ff930f] to-[#fff95b] bg-clip-text text-transparent` }
+            className={ `${unifraktur.className} text-6xl md:text-8xl font-bold mb-4 
+            bg-gradient-to-r from-[#FF8A00] to-[#FFD700] bg-clip-text text-transparent` }
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100 }}
           >
             KARTE
           </motion.h1>
-          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
+          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.4)]">
             Electrifying soundscapes that transcend boundaries, mixing beats that move your soul
           </motion.p>
         </motion.div>
@@ -110,8 +110,8 @@ export default function Hero() {
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              className="flex items-center gap-2 bg-[#fff95b]/50 
-            text-white px-6 py-3 rounded-full hover:bg-[#ff930f]/50 
+              className="flex items-center gap-2 bg-[#FFD700]/70 
+            text-black px-6 py-3 rounded-full hover:bg-[#FF8A00]/80 
             transition-all shadow-lg"
             >
               <Play className="w-5 h-5 fill-white" />
@@ -124,8 +124,8 @@ export default function Hero() {
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              className="flex items-center gap-2 border border-white/30 
-            text-white px-6 py-3 rounded-full hover:bg-white/10 
+              className="flex items-center gap-2 border-2 border-white/50 
+            text-white px-6 py-3 rounded-full hover:bg-white/20 
             transition-all shadow-lg"
             >
               <MessageSquarePlus className="w-5 h-5" />
