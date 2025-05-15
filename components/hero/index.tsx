@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Disc3, Headphones, MessageSquarePlus, Play } from "lucide-react";
-import { unifraktur } from "@/components/fonts";
+import { kaushan } from "@/components/fonts";
 import Link from "next/link";
 
 export default function Hero() {
@@ -90,8 +90,8 @@ export default function Hero() {
       >
         <motion.div variants={itemVariants} className="mb-6">
           <motion.h1
-            className={ `${unifraktur.className} text-6xl md:text-8xl font-bold mb-4 
-            bg-gradient-to-r from-[#FF8A00] to-[#FFD700] bg-clip-text text-transparent` }
+            className={ `${kaushan.className} text-6xl md:text-8xl font-bold mb-4 
+            bg-gradient-to-r from-[#FF8A00] to-[#6B46C1] bg-clip-text text-transparent` }
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ type: "spring", stiffness: 100 }}
@@ -110,8 +110,8 @@ export default function Hero() {
               variants={buttonVariants}
               whileHover="hover"
               whileTap="tap"
-              className="flex items-center gap-2 bg-[#FFD700]/70 
-            text-black px-6 py-3 rounded-full hover:bg-[#FF8A00]/80 
+              className="flex items-center gap-2 bg-gradient-to-r from-[#6B46C1] to-[#553C9A] 
+            text-white px-6 py-3 rounded-full hover:bg-gradient-to-r hover:from-[#553C9A] hover:to-[#44337A] 
             transition-all shadow-lg"
             >
               <Play className="w-5 h-5 fill-white" />
