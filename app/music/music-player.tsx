@@ -171,7 +171,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 variant="default"
                 size="icon"
                 onClick={togglePlay}
-                className="bg-[#FFD700] hover:bg-[#FF8A00] text-white rounded-full h-12 w-12"
+                className="bg-[#8280ed] hover:bg-[#6563cb] text-white rounded-full h-12 w-12"
               >
                 {isPlaying ? <Pause className="h-6 w-6" /> : <Play className="h-6 w-6 ml-1" />}
               </Button>
@@ -205,14 +205,14 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
         <Slider value={[volume]} max={100} step={1} onValueChange={handleVolumeChange} className="cursor-pointer" />
       </div>
 
-      <div className="mt-12">
+      <div className={`mt-12 ${montserrat.className}`}>
         <h3 className="text-xl font-semibold text-gray-700 mb-4">Music Library</h3>
         <div className="space-y-2">
           {musicList.map((song, index) => (
             <div
               key={song.id}
               className={`flex items-center gap-4 p-3 rounded-lg transition-all cursor-pointer ${
-                currentSongIndex === index ? "bg-[#FFD700]/20 border border-[#FFD700]/50" : "hover:bg-gray-200/50"
+                currentSongIndex === index ? "bg-[#8280ed]/20 border border-[#8280ed]/50" : "hover:bg-gray-200/50"
               }`}
               onClick={() => {
                 setCurrentSongIndex(index)
@@ -223,7 +223,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                 {song.cover ? (
                   <Image src={song.cover || "/placeholder.svg"} alt={song.title} fill className="object-cover" />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-[#FFD700]">
+                  <div className="w-full h-full flex items-center justify-center bg-[#8280ed]">
                     <Music className="w-6 h-6 text-gray-100" />
                   </div>
                 )}
@@ -242,7 +242,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
                     {[1, 2, 3].map((bar) => (
                       <span
                         key={bar}
-                        className="w-1 bg-[#FFD700] rounded-full animate-pulse"
+                        className="w-1 bg-[#8280ed] rounded-full animate-pulse"
                         style={{
                           height: `${8 + bar * 4}px`,
                           animationDelay: `${bar * 0.2}s`,
