@@ -5,6 +5,7 @@ import Image from "next/image"
 import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Repeat, Shuffle, Music } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
+import {montserrat} from "@/components/fonts"
 
 interface Song {
   id: string
@@ -113,7 +114,7 @@ export function MusicPlayer({ musicList }: MusicPlayerProps) {
         onLoadedMetadata={handleTimeUpdate}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 ${montserrat.className}`}>
         <div className="flex justify-center md:justify-start">
           <div className="relative w-48 h-48 rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
             {currentSong.cover ? (

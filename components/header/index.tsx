@@ -111,7 +111,7 @@ export function Header() {
       variants={headerVariants}
       role="banner"
     >
-      <div className="container mx-auto px-2 md:px-4 py-4">
+      <div className="container mx-auto px-6 md:px-4 py-4">
         <div className="relative flex justify-between items-center">
           {/* Glassmorphic Background */}
           <motion.div

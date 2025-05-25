@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { montserrat } from "@/components/fonts"
 
 // Define the form schema with Zod
 const formSchema = z.object({
@@ -59,7 +60,7 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className={`${montserrat.className} space-y-6`}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}
@@ -142,7 +143,7 @@ export function ContactForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-[#8280ed] hover:bg-[#6563cb] text-white transition-all"
+          className="w-full bg-[#8280ed] p-5 hover:bg-[#6563cb] text-white transition-all"
         >
           {isSubmitting ? (
             <>

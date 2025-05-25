@@ -1,11 +1,12 @@
 import { Mail, MapPin, Phone, Instagram, Twitter, Facebook } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { montserrat } from "@/components/fonts"
 
 export function ContactInfo() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8"> 
       <div>
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Contact Information</h2>
+        <h2 className={`${montserrat.className} text-xl font-semibold text-gray-700 mb-4`}>Contact Information</h2>
         <div className="space-y-4">
           <div className="flex items-start gap-3">
             <Mail className="h-5 w-5 text-gray-500 mt-0.5" />
@@ -28,7 +29,7 @@ export function ContactInfo() {
         </div>
       </div>
       <div>
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">Follow Us</h2>
+        <h2 className={`${montserrat.className} text-xl font-semibold text-gray-700 mb-4`}>Follow Us</h2>
         <div className="flex gap-3">
           <Button variant="ghost" size="icon" className="rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700" asChild>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
